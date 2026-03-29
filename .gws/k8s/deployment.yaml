@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: svelte-standalone
+  namespace: svelte-standalone
+  labels:
+    app: svelte-standalone
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: svelte-standalone
+  template:
+    metadata:
+      labels:
+        app: svelte-standalone
+    spec:
+      containers:
+      - name: svelte-standalone
+        image: svelte-standalone
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 5173
+          name: http
+          protocol: TCP
+      restartPolicy: Always
